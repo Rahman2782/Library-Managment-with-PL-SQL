@@ -1,3 +1,5 @@
+require('dotenv').config(); //ALWAYS AT TOP - for loading user/pass
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');

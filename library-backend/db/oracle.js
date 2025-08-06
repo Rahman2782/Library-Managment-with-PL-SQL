@@ -1,17 +1,16 @@
 const oracledb = require('oracledb');
-require('dotenv').config(); //for .env variables (db user/password)
 
 oracledb.autoCommit = true; //auto commits every insert/update
 
-const username = process.env.DB_USERNAME;
-const password = process.env.DB_PASSWORD;
-const connectS = process.env.CONNECT_STRING;
-
 async function getConnection() {
+    console.log('DB_USERNAME:', process.env.DB_USERNAME);
+    console.log('DB_PASSWORD:', process.env.DB_PASSWORD ? '***' : 'undefined');
+    console.log('DB_CONNECT_STRING:', process.env.DB_CONNECT_STRING);
+    
     return await oracledb.getConnection({
-        usern: username,
-        password: password,
-        connectString: connectS
+        user: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        connectString: process.env.DB_CONNECT_STRING,
     });
 }
 
