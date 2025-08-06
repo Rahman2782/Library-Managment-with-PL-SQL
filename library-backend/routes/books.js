@@ -19,4 +19,34 @@ router.post('/add', async (req, res) => {
     }
 });
 
+router.post('/users', async (req, res) => {
+    const { name, address, phone, membershuip_no } = req.body;
+
+    try {
+        const conn = await getConnection();
+        await conn.execute(`BEGIN add_user_sp(:name, :address, :phone, :membership_no); END;`,
+            { name, address, phone, membershuip_no }
+        );
+        res.status(200).send('USER ADDED SUCCESFULLY');   
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("ERROR HANDLING USER");
+    }
+});
+
+router.post('/loans', async (req, res) => {
+    const { book_id, patron_id, loan_date, due_date } = req.body;
+
+    try {
+        const conn = await getConnection();
+        await conn.execute(`BEGIN loan_book_sp(:book_id, :patron_id, :loan_date. :due_date); END;`,
+            { book_id, patron_id, loan_date, due_date }
+        );
+        res.status(200).send('LOAN UPDATED SUCCESSFULLY');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('ERROR HANDLING LOAN');
+    }
+});
+
 module.exports = router;
