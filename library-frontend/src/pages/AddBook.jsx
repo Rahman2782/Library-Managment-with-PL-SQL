@@ -36,7 +36,7 @@ export default function AddBook() {
             />
             <input 
                 name="genre"
-                value={form.value}
+                value={form.genre}
                 placeholder="Genre" 
                 onChange={e => setForm({ ...form, genre: e.target.value })} 
             />
