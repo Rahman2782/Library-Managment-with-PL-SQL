@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const bookRoutes = require('./routes/books');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 app.get('/', (req, res) => {
     res.status(200).send('Welcome to the Book API! Use /books to access book-related endpoints.');
